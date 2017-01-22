@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<project basedir="." default="${client.jar}" name="SRM">
+    
+	<property name="build.dir" value="WebContent/WEB-INF/classes/"/>
+	<property name="dist.dir" value="dist"/>
+	<property name="client.jar" value="lpmas-srm-client-0.1.0.jar"/>
+	
+	<target name="prepare">
+			<mkdir dir="${dist.dir}"/>
+			<delete>
+				<fileset dir="${dist.dir}">
+					<include name="${dist.jar}"/>
+				</fileset>
+			</delete>
+	</target>
+	
+	<target name="${client.jar}" depends="prepare">
+			<jar jarfile="${dist.dir}/${client.jar}">
+				<fileset dir="${build.dir}" >
+					<include name="com/lpmas/srm/bean/**"/>
+					<include name="com/lpmas/srm/client/**"/>
+					<include name="com/lpmas/srm/component/**"/>
+					<include name="com/lpmas/srm/config/SrmClientConfig.class"/>
+					<include name="com/lpmas/srm/config/SrmClientCacheConfig.class"/>
+					<include name="com/lpmas/srm/config/SrmConfig.class"/>
+					<exclude name="com/lpmas/srm/component/impl/**"/>
+				</fileset>
+			</jar>
+	</target>
+	
+</project>
